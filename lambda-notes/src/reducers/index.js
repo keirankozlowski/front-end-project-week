@@ -1,22 +1,23 @@
 import { FETCHED_NOTES, FETCHING_NOTES, ERROR_FETCHING_NOTES, 
         ADDED_NOTE, ADDING_NOTE, ERROR_ADDING_NOTE, 
-        PICK_NOTE_TO_UPDATE, UPDATED_NOTE, UPDATING_NOTE, ERROR_UPDATING_NOTE, 
+        PICK_NOTE,
+        UPDATED_NOTE, UPDATING_NOTE, ERROR_UPDATING_NOTE, 
         DELETED_NOTE, DELETING_NOTE, ERROR_DELETING_NOTE } from '../actions';
 
 const initialState = {
     notes: [
         {
+            _id: -1,
             title: "",
             textBody: ""
         }
     ],
-    fetchedNotes: false,
     fetchingNotes: false,
     addingNote: false,
     updatingNote: false,
     deletingNote: false,
-    noteToUpdate: null,
-    error: ''
+    error: '',
+    noteToBeUpdated: null
 }
 
 export const rootReducer = (state = initialState, action) => {
@@ -30,6 +31,7 @@ export const rootReducer = (state = initialState, action) => {
             }
         case FETCHED_NOTES:
         console.log("FETCHED_NOTES");
+        console.log(action.payload);
             return {
                 ...state,
                 notes: action.payload,
@@ -54,9 +56,9 @@ export const rootReducer = (state = initialState, action) => {
             }
         case ADDED_NOTE:
         console.log("ADDED_NOTES");
+        console.log(action.payload);
             return {
                 ...state,
-                notes: action.payload,
                 addingNotes: false
             }
         case ERROR_ADDING_NOTE:
@@ -69,13 +71,14 @@ export const rootReducer = (state = initialState, action) => {
                 deletingNote: false
             }
 
-        case PICK_NOTE_TO_UPDATE:
-            console.log("PICK_NOTE_TO_UPDATE");
-            const note = state.notes.find(note => note.id === action.payload);
+        case PICK_NOTE:
+            console.log("PICK_NOTE");
+            const note = state.notes.find(note => note._id === action.payload);
             return { 
                 ...state, 
-                noteToUpdate: note ? note : null 
+                noteToBeUpdated: note ? note : null
             }
+
         case UPDATING_NOTE:
             console.log("UPDATING_NOTES");
             return {
@@ -84,9 +87,10 @@ export const rootReducer = (state = initialState, action) => {
             }
         case UPDATED_NOTE:
         console.log("UPDATED_NOTES");
+        console.log(action.payload);
             return {
                 ...state,
-                notes: action.payload,
+                // notes: action.payload,
                 updatingNotes: false
             }
         case ERROR_UPDATING_NOTE:
@@ -107,9 +111,9 @@ export const rootReducer = (state = initialState, action) => {
             }
         case DELETED_NOTE:
         console.log("DELETED_NOTES");
+        console.log(action.payload);
             return {
                 ...state,
-                notes: action.payload,
                 deletingNotes: false
             }
         case ERROR_DELETING_NOTE:

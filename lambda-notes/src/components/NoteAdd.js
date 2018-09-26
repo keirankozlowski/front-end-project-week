@@ -1,28 +1,41 @@
 import React from 'react';
 
 const NoteAdd = props => {
-    return(
-        <form>
-            <label>Title</label>
-            <input
-                type="text"
-                name="title"
-                placeholder="Title"
-                onChange={props.handleInput}
-                value={props.newNote.title}
-            />
 
-            <label>Content</label>
-            <input
-                type="text"
-                name="textBody"
-                placeholder="Content"
-                onChange={props.handleInput}
-                value={props.newNote.textBody}
-            />
+    function submitHandler(event) {
+        event.preventDefault();
 
-            <button onClick={props.addNote}>Add New Note</button>
-        </form>
+        if (props.isBeingUpdated) {
+            props.updateNoteHandler();
+        } else {
+            props.addNoteHandler(event);
+        }
+    }
+
+    return (
+        <div>
+            <h1>{props.isBeingUpdated ? "Edit Note: " : "Create New Note: "}</h1>
+            <form>
+                <label>Title</label>
+                <input
+                    type="text"
+                    name="title"
+                    placeholder="Title"
+                    onChange={props.handleInput}
+                    value={props.note.title}
+                />
+
+                <label>Content</label>
+                <input
+                    type="text"
+                    name="textBody"
+                    placeholder="Content"
+                    onChange={props.handleInput}
+                    value={props.note.textBody}
+                />
+                <button onClick={props.submitHandler}>Submit</button>
+            </form>
+        </div>
     );
 }
 
