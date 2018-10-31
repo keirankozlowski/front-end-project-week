@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
+import { Auth0Lock } from "auth0-lock";
+import auth0 from "auth0-js";
 
 import { fetchNotes, fetchSingleNoteCard, addNote, updateNote, deleteNote } from '../actions';
 
@@ -52,25 +54,25 @@ class App extends Component {
         <Route exact path="/" component={NotesList} />
 
         <Route path='/create' render={props => {
-          return(<NoteAdd {...props}
+          return (<NoteAdd {...props}
             newNote={this.state.newNote}
             handleInput={this.handleInput}
             addNote={this.addNote}
-            />)
+          />)
         }} />
 
         <Route exact path='/note/:id' render={props => {
-          return(
+          return (
             <SingleNoteCard {...props}
               notes={this.props.notes}
               updateNote={this.props.updateNote}
-              deleteNote={this.props.deleteNote} 
+              deleteNote={this.props.deleteNote}
               fetchSingleNote={this.props.fetchSingleNoteCard}
             />)
-        }}/>
+        }} />
 
         <Route exact path='/edit/:id' render={props => {
-          return(
+          return (
             <NoteUpdate {...props}
               updateNote={this.props.updateNote}
             />)

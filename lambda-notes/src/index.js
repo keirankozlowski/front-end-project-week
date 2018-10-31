@@ -13,6 +13,8 @@ import { rootReducer } from './reducers';
 
 import './index.css';
 
+require("dotenv").config();
+
 const store = createStore(
     rootReducer,
     applyMiddleware(thunk)
