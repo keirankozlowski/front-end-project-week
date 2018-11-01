@@ -10,39 +10,38 @@ import logo from '../logo.svg';
 import './App.css';
 
 class App extends Component {
-  state = {
-    newNote: {
-      title: '',
-      content: ''
-    },
-    selectedNote: {}
-  }
+    state = {
+      newNote: {
+        title: '',
+        content: ''
+      },
+      selectedNote: {}
+    }
 
-  render() {
-    console.log(this.state);
-    return (
-      <div className="App">
-        {/* implement a ternary operator for the loading screen */}
-        {/* <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>Loading...</p>
-        </div> */}
-
-        <div>
-          Temporary Sanity Checker
-          <HomeView />
+    render() {
+      console.log(this.state);
+      return (
+        <div className="App">
+          {/* implement a ternary operator for the loading screen */}
+          {/* <div className="App-header">
+            <img src={logo} className="App-logo" alt="logo" />
+            <p>Loading...</p>
+          </div> */}
+  
+          <div>
+            <HomeView />
+          </div>
         </div>
-      </div>
-    );
-  }
+      );
+    }
 }
 
 const mapStateToProps = state => {
   return {
-    fetchingNotes: props.fetchingNotes,
-    addNote: props.addNote,
-    updateNote: props.updateNote,
-    deleteNote: props.deleteNote
+    fetchingNotes: state.fetchingNotes,
+    addNote: state.addNote,
+    updateNote: state.updateNote,
+    deleteNote: state.deleteNote
   }
 }
 
