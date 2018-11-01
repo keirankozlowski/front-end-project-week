@@ -7,6 +7,7 @@ import thunk from 'redux-thunk';
 import * as serviceWorker from './serviceWorker';
 
 import App from './components/App';
+import { rootReducer } from './reducers';
 
 import './index.css';
 
@@ -19,7 +20,7 @@ ReactDOM.render(
     <Provider store={store}>
         <Router>
             <Route exact path='/' component={App} />
-        </Router>,
+        </Router>
     </Provider>,
     document.getElementById('root')
 );
