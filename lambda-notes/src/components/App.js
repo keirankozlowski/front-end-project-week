@@ -4,13 +4,22 @@ import { Route } from 'react-router-dom';
 
 import HomeView from '../views/HomeView';
 
-import { fetchNotes, addNote, updateNote, deleteNote } from '../actions';
+import { fetchNotes, fetchSingleNoteCard, addNote, updateNote, deleteNote } from '../actions';
 
 import logo from '../logo.svg';
 import './App.css';
 
 class App extends Component {
+  state = {
+    newNote: {
+      title: '',
+      content: ''
+    },
+    selectedNote: {}
+  }
+
   render() {
+    console.log(this.state);
     return (
       <div className="App">
         {/* implement a ternary operator for the loading screen */}
