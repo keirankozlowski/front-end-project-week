@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import Sidebar from './Sidebar';
+import Sidebar from '../components/Sidebar';
 import NotesList from '../components/NotesList';
+
+import { fetchNotes } from '../actions';
 
 class HomeView extends React.Component {
     componentDidMount() {
